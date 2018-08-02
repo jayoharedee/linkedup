@@ -42,7 +42,7 @@ InputGroup.propTypes = {
   error: PropTypes.string,
 }
 
-TextFieldGroup.defaultProps = {
+InputGroup.defaultProps = {
   type: 'text',
 }
 
