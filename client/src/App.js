@@ -29,7 +29,9 @@ import AddEducation from './components/add-credentials/AddEducation';
 import Profiles from './components/profiles/Profiles';
 // import AddEducation from './components/add-credentials/AddEducation';
 
-import './App.css';
+
+
+import 'semantic-ui-css/semantic.min.css'
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
