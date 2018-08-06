@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import {
+  Header,
+  Segment,
+  Button,
+  Container,
+  Icon,
+} from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
@@ -49,11 +56,21 @@ class Dashboard extends Component {
       } else {
         dashboardContent = (
           <div>
-            <p className="lead text-muted">Welcome { user.name }</p>
-            <p>You have not setup a profile yet, please add some info.</p>
-            <Link to="/create-profile" className="btn btn-lg btn-info">
-              Create Profile
-            </Link>
+            <Header as='h2' attached='top' textAlign='center'>
+              Welcome { user.name }!
+            </Header>
+
+            <Segment attached>
+            <Header as='h3' textAlign='center'>
+              You have not setup a profile yet, please add some info.
+            </Header>
+
+              <Button content='Primary'
+                primary
+                fluid
+                onClick={() => this.props.history.push('/create-profile')}
+              />
+            </Segment>
           </div>
         )
       }
@@ -61,14 +78,17 @@ class Dashboard extends Component {
 
     return (
       <div className="dashboard">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
-              {dashboardContent}
-            </div>
-          </div>
-        </div>
+        <Container text>
+          <Header as='h2' icon textAlign='center'>
+            <Icon name='settings' />
+            Dashboard
+            <Header.Subheader>
+              Once you have a profile, this is the place where you
+              will be customizing your settings.
+            </Header.Subheader>
+          </Header>
+          {dashboardContent}
+        </Container>
       </div>
     )
   }
