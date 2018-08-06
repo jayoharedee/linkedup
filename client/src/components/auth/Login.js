@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import {
+  // Checkbox,
+  Form,
+  Container,
+  Header,
+  Divider,
+  Button,
+  Segment,
+  Icon,
+  // Image,
+ } from 'semantic-ui-react'
 
 import { loginUser } from '../../actions/authActions';
-import TextFieldGroup from '../../components/common/TextFieldGroup';
+
+import Field from '../common/FormField';
 
 class Login extends Component {
   constructor() {
@@ -54,36 +66,46 @@ class Login extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="login">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">Sign in to your LinkedUp account</p>
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="Email Address"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  error={errors.email}
-                />
+      <Container text>
+        <Header as='h2'
+          icon
+          textAlign='center'
+          dividing
+        >
+          <Icon name='users' circular />
+          <Header.Content>Link Up!</Header.Content>
+        </Header>
 
-                <TextFieldGroup
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  error={errors.password}
-                />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+        <Form onSubmit={this.onSubmit}>
+          <Field
+            label="Your Email"
+            name="email"
+            type="email"
+            value={this.state.email}
+            onChange={this.onChange}
+            error={errors.email}
+          />
+          <Field
+            label="Your Password"
+            name="password"
+            type="password"
+            value={this.state.password}
+            onChange={this.onChange}
+            error={errors.password}
+          />
+        </Form>
+        <Segment padded>
+          <Button primary fluid onClick={this.onSubmit}>
+            Login
+          </Button>
+          <Divider horizontal>Or</Divider>
+          <Button secondary
+            fluid
+            onClick={() => this.props.history.push('/register') }>
+              Sign Up Now
+          </Button>
+        </Segment>
+      </Container>
     )
   }
 }

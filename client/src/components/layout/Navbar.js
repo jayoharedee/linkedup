@@ -8,51 +8,6 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 import { clearCurrentProfile } from '../../actions/profileActions';
 
-// const authLinks = (
-//   <ul className="navbar-nav ml-auto">
-//     <li className="nav-item">
-//       <Link className="nav-link" to="/dashboard">Dashboard</Link>
-//     </li>
-//     <li className="nav-item">
-//       <a href=""
-//         onClick={this.onLogoutClick.bind(this)}
-//         className="nav-link"
-//       >
-//         <img src={user.avatar}
-//           className="rounded-circle"
-//           alt={user.name}
-//           style={{ width: '25px', marginRight: '5px' }}
-//         />{' '}
-//         Logout
-//       </a>
-//     </li>
-//   </ul>
-// );
-
-// return (
-//   <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-//     <div className="container">
-//       <Link className="navbar-brand" to="/">LinkedUp</Link>
-//       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
-//         <span className="navbar-toggler-icon"></span>
-//       </button>
-
-//       <div className="collapse navbar-collapse" id="mobile-nav">
-//         <ul className="navbar-nav mr-auto">
-//           <li className="nav-item">
-//             <Link className="nav-link" to="/profiles">
-//               {' '}
-//               Developers
-//             </Link>
-//           </li>
-//         </ul>
-//         {isAuthenticated ? authLinks : guestLinks}
-//       </div>
-//     </div>
-//   </nav>
-// )
-// }
-
 class Navbar extends Component {
   state = { activeItem: 'login' }
 
@@ -112,21 +67,19 @@ class Navbar extends Component {
     )
 
     return (
-      <div>
-        <Menu inverted>
-          <Menu.Item as={Link} to="/"
-            name='LinkedUp'
-            active={activeItem === 'linked'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item as={Link} to="/profiles"
-            name='profiles'
-            active={activeItem === 'profiles'}
-            onClick={this.handleItemClick}
-          />
-          {isAuthenticated ? authLinks : guestLinks}
-        </Menu>
-      </div>
+      <Menu inverted style={{ marginBottom: '1rem' }}>
+        <Menu.Item as={Link} to="/"
+          name='LinkedUp'
+          active={activeItem === 'linked'}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item as={Link} to="/profiles"
+          name='profiles'
+          active={activeItem === 'profiles'}
+          onClick={this.handleItemClick}
+        />
+        {isAuthenticated ? authLinks : guestLinks}
+      </Menu>
     );
   }
 }
