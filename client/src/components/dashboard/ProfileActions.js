@@ -1,12 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { Button, } from 'semantic-ui-react'
 
 const ProfileActions = () => {
   return (
       <Button.Group color='blue'>
-        <Button onClick={() => this.props.history('/edit-profile')}>Edit Profile</Button>
-        <Button>Add Experience</Button>
-        <Button>Add Education</Button>
+        <Button as={Link} to="/edit-profile">
+          Edit Profile
+        </Button>    
+        <Button as={Link} to="/add-experience">
+          Add Experience
+        </Button>
+        <Button as={Link} to="/add-education">
+          Add Education
+        </Button>
       </Button.Group>
   );
 

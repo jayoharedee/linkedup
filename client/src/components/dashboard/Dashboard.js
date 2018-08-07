@@ -40,14 +40,16 @@ class Dashboard extends Component {
       profilesExist = Object.keys(profile).length > 0;
       if (profilesExist) {
         dashboardContent = (
-          <Grid centered columns={2}>
-            <Grid.Column>
-              <p className="lead text-muted">
-                Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
-              </p>
-            </Grid.Column>
-
+          <Grid centered>
             <Grid.Row>
+              <Grid.Column>
+                <p className="lead text-muted">
+                  Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+                </p>
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row centered column={1}>
               <Grid.Column>
                 <ProfileActions />
               </Grid.Column>
@@ -66,8 +68,7 @@ class Dashboard extends Component {
             </Grid.Row>
             
             <Grid.Row centered column={1}>
-              <Button 
-                icon='user delete'
+              <Button
                 negative 
                 onClick={this.onDeleteClick.bind(this)}
               >
