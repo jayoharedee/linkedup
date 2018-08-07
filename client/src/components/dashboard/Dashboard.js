@@ -30,12 +30,14 @@ class Dashboard extends Component {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
 
+    let profilesExist;
     let dashboardContent;
 
     if (profile === null || loading) {
       dashboardContent = <Spinner />;
     } else {
-      if (Object.keys(profile).length > 0) {
+      profilesExist = Object.keys(profile).length > 0;
+      if (profilesExist) {
         dashboardContent = (
           <div>
             <p className="lead text-muted">
@@ -77,18 +79,16 @@ class Dashboard extends Component {
     }
 
     return (
-      <div className="dashboard">
-        <Container text>
-          <Header as='h2' icon textAlign='center'>
-            <Icon name='settings' />
-            Dashboard
-            <Header.Subheader>
-              Once you have a profile, this is the place where you
-              will be customizing your settings.
-            </Header.Subheader>
-          </Header>
-          {dashboardContent}
-        </Container>
+      <div>
+        <Header as='h2' icon textAlign='center'>
+          <Icon name='settings' />
+          Dashboard
+          <Header.Subheader>
+            Once you have a profile, this is the place where you
+            will be customizing your settings.
+          </Header.Subheader>
+        </Header>
+        {dashboardContent}
       </div>
     )
   }
