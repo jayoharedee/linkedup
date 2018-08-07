@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {
+  Container,
+  Image,
+  Header,
+  Button,
+  Divider,
+} from 'semantic-ui-react';
+
+import Showcase from '../../img/showcase.jpg';
 
 class Landing extends Component {
   componentDidMount() {
@@ -12,22 +21,21 @@ class Landing extends Component {
 
   render() {
     return (
-      <div className="landing">
-        <div className="dark-overlay landing-inner text-light">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">LinkedUp
-                </h1>
-                <p className="lead">Get LinkedUp with other developers, professionals and code enthusiasts</p>
-                <hr />
-                <Link to="/register" className="btn btn-lg btn-info mr-2">Sign Up</Link>
-                <Link to="/login" className="btn btn-lg btn-light">Login</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Container text className="landing">
+        <Header
+          as='h1'
+          content='LinkedUp'
+          subheader='Get LinkedUp with other developers, professionals and code enthusiasts'
+          textAlign='center'
+        />
+        <Image src={Showcase} rounded fluid />
+        <Divider />
+        <Button.Group fluid>
+          <Button positive onClick={this.props.history.push('/register')}>Sign Up</Button>
+          <Button.Or />
+          <Button onClick={this.props.history.push('/login')}>Login</Button>
+        </Button.Group>
+      </Container>
     )
   }
 }
