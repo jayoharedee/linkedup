@@ -65,7 +65,7 @@ class Dashboard extends Component {
               You have not setup a profile yet, please add some info.
             </Header>
 
-              <Button content='Primary'
+              <Button content='Create'
                 primary
                 fluid
                 onClick={() => this.props.history.push('/create-profile')}
