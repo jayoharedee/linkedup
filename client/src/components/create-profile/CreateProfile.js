@@ -50,8 +50,6 @@ class CreateProfile extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
-    this.onSelectedChange = this.onSelectedChange.bind(this);
-    this.onSearchChange = this.onSearchChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -191,6 +189,7 @@ class CreateProfile extends Component {
             value={status}
             handleChange={this.handleChange}
             options={options}
+            placeholder="Status"
           />
           <Field
             placeholder="Company"
