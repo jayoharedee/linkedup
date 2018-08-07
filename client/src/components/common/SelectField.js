@@ -12,6 +12,7 @@ const SelectField = ({
   handleChange,
   handleSearchChange,
   options,
+  placeholder,
 }) => (
   <Dropdown
     fluid
@@ -20,7 +21,7 @@ const SelectField = ({
     onChange={handleChange}
     onSearchChange={handleSearchChange}
     options={options}
-    placeholder="State"
+    placeholder={placeholder}
     search
     searchQuery={searchQuery}
     selection
