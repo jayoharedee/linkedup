@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import {
+  // Checkbox,
+  Form,
+  Container,
+  Header,
+  Dropdown,
+  Divider,
+  Button,
+  Segment,
+  Icon,
+  Select,
+  // Image,
+ } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
+
+import Field from '../common/FormField';
+import SelectField from '../common/SelectField';
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
+
 import { createProfile } from '../../actions/profileActions';
 
 class CreateProfile extends Component {
@@ -26,10 +43,15 @@ class CreateProfile extends Component {
       linkedin: '',
       youtube: '',
       instagram: '',
+      searchQuery: '',
+      value: '',
+      selected: null,
       errors: {}
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onSelectedChange = this.onSelectedChange.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -61,59 +83,74 @@ class CreateProfile extends Component {
     this.props.createProfile(profileData, this.props.history);
   }
 
-  onChange(e) {
+  onChange(e, data) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  handleChange = (e, { searchQuery, value }) =>
+    this.setState({ searchQuery, status: value });
+
   render() {
-    const { errors, displaySocialInputs } = this.state;
+    const {
+      errors,
+      displaySocialInputs,
+      handle,
+      company,
+      website,
+      location,
+      status,
+      skills,
+      githubusername,
+      bio,
+      twitter,
+      facebook,
+      linkedin,
+      youtube,
+      instagram,
+     } = this.state;
 
     let socialInputs;
 
     if (displaySocialInputs) {
       socialInputs = (
         <div>
-          <InputGroup
+          <Field
             placeholder="Twitter Profile URL"
             name="twitter"
             icon="fab fa-twitter"
-            value={this.state.twitter}
+            value={twitter}
             onChange={this.onChange}
             error={errors.twitter}
           />
-
-          <InputGroup
+          <Field
             placeholder="Facebook Page URL"
             name="facebook"
             icon="fab fa-facebook"
-            value={this.state.facebook}
+            value={facebook}
             onChange={this.onChange}
             error={errors.facebook}
           />
-
-          <InputGroup
+          <Field
             placeholder="Linkedin Profile URL"
             name="linkedin"
             icon="fab fa-linkedin"
-            value={this.state.linkedin}
+            value={linkedin}
             onChange={this.onChange}
             error={errors.linkedin}
           />
-
-          <InputGroup
+          <Field
             placeholder="YouTube Channel URL"
             name="youtube"
             icon="fab fa-youtube"
-            value={this.state.youtube}
+            value={youtube}
             onChange={this.onChange}
             error={errors.youtube}
           />
-
-          <InputGroup
+          <Field
             placeholder="Instagram Page URL"
             name="instagram"
             icon="fab fa-instagram"
-            value={this.state.instagram}
+            value={instagram}
             onChange={this.onChange}
             error={errors.instagram}
           />
@@ -123,120 +160,109 @@ class CreateProfile extends Component {
 
     // Select options for status
     const options = [
-      { label: '* Select Professional Status', value: 0 },
-      { label: 'Developer', value: 'Developer' },
-      { label: 'Junior Developer', value: 'Junior Developer' },
-      { label: 'Senior Developer', value: 'Senior Developer' },
-      { label: 'Manager', value: 'Manager' },
-      { label: 'Student or Learning', value: 'Student or Learning' },
-      { label: 'Instructor or Teacher', value: 'Instructor or Teacher' },
-      { label: 'Intern', value: 'Intern' },
-      { label: 'Other', value: 'Other' }
+      { key: Math.random(), text: '* Select Professional Status', value: 0 },
+      { key: Math.random(), text: 'Developer', value: 'Developer' },
+      { key: Math.random(), text: 'Junior Developer', value: 'Junior Developer' },
+      { key: Math.random(), text: 'Senior Developer', value: 'Senior Developer' },
+      { key: Math.random(), text: 'Manager', value: 'Manager' },
+      { key: Math.random(), text: 'Student or Learning', value: 'Student or Learning' },
+      { key: Math.random(), text: 'Instructor or Teacher', value: 'Instructor or Teacher' },
+      { key: Math.random(), text: 'Intern', value: 'Intern' },
+      { key: Math.random(), text: 'Other', value: 'Other' }
     ];
 
     return (
-      <div className="create-profile">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Your Profile</h1>
-              <p className="lead text-center">
-                Let's get some information to make your profile stand out
-              </p>
-              <small className="d-block pb-3">* = required fields</small>
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="* Profile Handle"
-                  name="handle"
-                  value={this.state.handle}
-                  onChange={this.onChange}
-                  error={errors.handle}
-                  info="A unique handle for your profile URL. Your full name, company name, nickname"
-                />
-                <SelectListGroup
-                  placeholder="Status"
-                  name="status"
-                  value={this.state.status}
-                  onChange={this.onChange}
-                  options={options}
-                  error={errors.status}
-                  info="Give us an idea of where you are at in your career"
-                />
-                <TextFieldGroup
-                  placeholder="Company"
-                  name="company"
-                  value={this.state.company}
-                  onChange={this.onChange}
-                  error={errors.company}
-                  info="Could be your own company or one you work for"
-                />
-                <TextFieldGroup
-                  placeholder="Website"
-                  name="website"
-                  value={this.state.website}
-                  onChange={this.onChange}
-                  error={errors.website}
-                  info="Could be your own website or a company one"
-                />
-                <TextFieldGroup
-                  placeholder="Location"
-                  name="location"
-                  value={this.state.location}
-                  onChange={this.onChange}
-                  error={errors.location}
-                  info="City or city & state suggested (eg. Boston, MA)"
-                />
-                <TextFieldGroup
-                  placeholder="* Skills"
-                  name="skills"
-                  value={this.state.skills}
-                  onChange={this.onChange}
-                  error={errors.skills}
-                  info="Please use comma separated values (eg.
-                    HTML,CSS,JavaScript,PHP"
-                />
-                <TextFieldGroup
-                  placeholder="Github Username"
-                  name="githubusername"
-                  value={this.state.githubusername}
-                  onChange={this.onChange}
-                  error={errors.githubusername}
-                  info="If you want your latest repos and a Github link, include your username"
-                />
-                <TextAreaFieldGroup
-                  placeholder="Short Bio"
-                  name="bio"
-                  value={this.state.bio}
-                  onChange={this.onChange}
-                  error={errors.bio}
-                  info="Tell us a little about yourself"
-                />
+      <Container text>
+        <h1 className="display-4 text-center">Create Your Profile</h1>
+        <p className="lead text-center">
+          Let's get some information to make your profile stand out
+        </p>
+        <small className="d-block pb-3">* = required fields</small>
+        <Form>
+          <Field
+            placeholder="* Profile Handle"
+            name="handle"
+            value={handle}
+            onChange={this.onChange}
+            error={errors.handle}
+            info="A unique handle for your profile URL. Your full name, company name, nickname"
+          />
+          <SelectField
+            value={status}
+            handleChange={this.handleChange}
+            options={options}
+          />
+          <Field
+            placeholder="Company"
+            name="company"
+            value={company}
+            onChange={this.onChange}
+            error={errors.company}
+            info="Could be your own company or one you work for"
+          />
+          <Field
+            placeholder="Website"
+            name="website"
+            value={website}
+            onChange={this.onChange}
+            error={errors.website}
+            info="Could be your own website or a company one"
+          />
+          <Field
+            placeholder="Location"
+            name="location"
+            value={location}
+            onChange={this.onChange}
+            error={errors.location}
+            info="City or city & state suggested (eg. Boston, MA)"
+          />
+          <Field
+            placeholder="* Skills"
+            name="skills"
+            value={skills}
+            onChange={this.onChange}
+            error={errors.skills}
+            info="Please use comma separated values (eg.
+              HTML,CSS,JavaScript,PHP"
+          />
+          <Field
+            placeholder="Github Username"
+            name="githubusername"
+            value={githubusername}
+            onChange={this.onChange}
+            error={errors.githubusername}
+            info="If you want your latest repos and a Github link, include your username"
+          />
+          <Field
+            placeholder="Short Bio"
+            name="bio"
+            value={bio}
+            onChange={this.onChange}
+            error={errors.bio}
+            info="Tell us a little about yourself"
+          />
 
-                <div className="mb-3">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      this.setState(prevState => ({
-                        displaySocialInputs: !prevState.displaySocialInputs
-                      }));
-                    }}
-                    className="btn btn-light"
-                  >
-                    Add Social Network Links
-                  </button>
-                  <span className="text-muted">Optional</span>
-                </div>
-                {socialInputs}
-                <input
-                  type="submit"
-                  value="Submit"
-                  className="btn btn-info btn-block mt-4"
-                />
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+          <Button
+            content='Include Your Social Media Links'
+            icon='retweet'
+            labelPosition='left'
+            label="Optional"
+            onClick={() => {
+              this.setState(prevState => ({
+                displaySocialInputs: !prevState.displaySocialInputs
+              }));
+            }}
+          />
+          {socialInputs}
+          <Divider />
+          <Button positive
+            onClick={this.onSubmit}
+            floated='right'
+          >
+            Submit
+          </Button>
+        </Form>
+      </Container>
     );
   }
 }
