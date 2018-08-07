@@ -4,7 +4,8 @@ import {
   Header,
   Segment,
   Button,
-  Container,
+  Grid,
+  Divider,
   Icon,
 } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
@@ -39,21 +40,41 @@ class Dashboard extends Component {
       profilesExist = Object.keys(profile).length > 0;
       if (profilesExist) {
         dashboardContent = (
-          <div>
-            <p className="lead text-muted">
-              Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
-            </p>
-            <ProfileActions />
-            <Experience experience={profile.experience} />
-            <Education education={profile.education} />
-            <div style={{ marginBottom: '60px' }} />
-            <button
-              onClick={this.onDeleteClick.bind(this)}
-              className="btn btn-danger"
-            >
-              Delete My Account
-            </button>
-          </div>
+          <Grid centered columns={2}>
+            <Grid.Column>
+              <p className="lead text-muted">
+                Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+              </p>
+            </Grid.Column>
+
+            <Grid.Row>
+              <Grid.Column>
+                <ProfileActions />
+              </Grid.Column>
+            </Grid.Row>
+            
+            <Grid.Row centered column={1}>
+              <Grid.Column>
+                <Education education={profile.education} />
+              </Grid.Column>
+            </Grid.Row>
+            
+            <Grid.Row centered column={1}>
+              <Grid.Column>
+                <Experience experience={profile.experience} />
+              </Grid.Column>
+            </Grid.Row>
+            
+            <Grid.Row centered column={1}>
+              <Button 
+                icon='user delete'
+                negative 
+                onClick={this.onDeleteClick.bind(this)}
+              >
+                Negative Button
+              </Button>
+            </Grid.Row>
+          </Grid>
         );
       } else {
         dashboardContent = (
@@ -84,8 +105,14 @@ class Dashboard extends Component {
           <Icon name='settings' />
           Dashboard
           <Header.Subheader>
-            Once you have a profile, this is the place where you
-            will be customizing your settings.
+            {
+              profilesExist ?
+                `Add, Edit or complete credentials for your profile. All the tools
+                are here for you to get LinkedUp!`
+              :
+                `Once you have a profile, this is the place where you
+                will be customizing your settings.`
+            }
           </Header.Subheader>
         </Header>
         {dashboardContent}
