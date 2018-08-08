@@ -17,6 +17,8 @@ import Register from './components/auth/Register';
 
 import Dashboard from './components/dashboard/Dashboard';
 
+import NotFound from './components/not-found/NotFound';
+
 import PrivateRoute from './components/common/PrivateRoute';
 
 import CreateProfile from './components/create-profile/CreateProfile';
@@ -75,6 +77,7 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path="/add-education" component={ AddEducation } />
               </Switch>
+              <Route exact path="/not-found" component={ NotFound } />
             </div>
             <Footer />
           </div>
