@@ -1,33 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { Button, } from 'semantic-ui-react'
+import { Button, Grid } from 'semantic-ui-react'
 
 const ProfileActions = () => {
   return (
-      <Button.Group color='blue'>
-        <Button as={Link} to="/edit-profile">
-          Edit Profile
-        </Button>    
-        <Button as={Link} to="/add-experience">
-          Add Experience
-        </Button>
-        <Button as={Link} to="/add-education">
-          Add Education
-        </Button>
-      </Button.Group>
-  );
+    <Grid.Row centered column={3}>
+      <Button.Group inverted>
+        <Grid.Column>
+          <Button as={Link} to="/edit-profile"  color='blue' basic content='Blue'>
+            Edit Profile
+          </Button> 
+        </Grid.Column>
 
-      {/* <Link to="/edit-profile" className="btn btn-light">
-        <i className="fas fa-user-circle text-info mr-1" /> Edit Profile
-      </Link>
-      <Link to="/add-experience" className="btn btn-light">
-        <i className="fab fa-black-tie text-info mr-1" />
-        Add Experience
-      </Link>
-      <Link to="/add-education" className="btn btn-light">
-        <i className="fas fa-graduation-cap text-info mr-1" />
-        Add Education
-      </Link> */}
+        <Grid.Column>
+          <Button as={Link} to="/add-experience" color='blue' basic content='Blue'>
+            Add Experience
+          </Button>
+        </Grid.Column>
+
+        <Grid.Column>
+          <Button as={Link} to="/add-education" color='blue' basic content='Blue'>
+            Add Education
+          </Button>
+        </Grid.Column>
+      </Button.Group>
+    </Grid.Row>
+  );
 };
 
 export default ProfileActions;
