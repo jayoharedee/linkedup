@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
+// import { Table, Header } from 'semantic-ui-react';
 
 import { deleteEducation } from '../../actions/profileActions';
+
+import Table from '../Table/';
 
 class Education extends Component {
   onDeleteClick(id) {
@@ -33,16 +36,12 @@ class Education extends Component {
 
     return (
       <div>
-        <h4 className="mb-4">Education Credentials</h4>
+        <Table 
+          header="Education Credentials" 
+          subheader="Your education portfolio"
+          tableHeaders={['School', 'Degree', 'Years']}
+        />
         <table className="table">
-          <thead>
-            <tr>
-              <th>School</th>
-              <th>Degree</th>
-              <th>Years</th>
-              <th></th>
-            </tr>
-          </thead>
             {education}
         </table>
       </div>
