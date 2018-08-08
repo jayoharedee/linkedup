@@ -1,5 +1,11 @@
+const username = process.env.DB_USER;
+const password = process.env.DB_PASS;
+const host = process.env.DB_HOST;
+const port = process.env.DB_PORT;
+const name = process.env.DB_NAME;
+const secret = process.env.DB_SECRET;
+
 module.exports = {
-  // use dot env for this
-  mongoURI: 'mongodb://cadmin:cadmin1@ds145981.mlab.com:45981/caxapconnector',
-  secretOrKey: 'secret',
+  mongoURI: `mongodb://${username}:${password}@${host}.com:${port}/${name}`,
+  secretOrKey: `${secret}`,
 };
