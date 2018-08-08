@@ -48,12 +48,8 @@ class Dashboard extends Component {
                 </p>
               </Grid.Column>
             </Grid.Row>
-
-            <Grid.Row centered column={1}>
-              <Grid.Column>
-                <ProfileActions />
-              </Grid.Column>
-            </Grid.Row>
+                
+            <ProfileActions />
             
             <Grid.Row centered column={1}>
               <Grid.Column>
