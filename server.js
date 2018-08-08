@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // DB config
 const db = require('./config/keys').mongoURI;
 
-const port = process.env.DB_PORT || 5000;
+const port = process.env.NODE_PORT || 5000;
 
 // Connect to MongoDB
 mongoose
