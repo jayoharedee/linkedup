@@ -20,14 +20,14 @@ const BasicTable = ({
         <Table.Header>
           <Table.Row>
             {
-              tableHeaders.map((cell) => <Table.HeaderCell>{cell}</Table.HeaderCell>)
+              tableHeaders.map((cell) => <Table.HeaderCell singleLine>{cell}</Table.HeaderCell>)
             }
           </Table.Row>
         </Table.Header>
         <Table.Body>
           <Table.Row>
             {
-              tableCells.map((cell) => <Table.Cell>{cell}</Table.Cell>)
+              tableCells.map((cell) => <Table.Cell singleLine>{cell}</Table.Cell>)
             }
           </Table.Row>
         </Table.Body>
@@ -39,8 +39,8 @@ const BasicTable = ({
 BasicTable.propTypes = {
   header: PropTypes.string.isRequired,
   subHeader: PropTypes.string.isRequired,
-  tableHeaders: PropTypes.string.isRequired,
-  tableCells: PropTypes.string.isRequired,
+  tableHeaders: PropTypes.array.isRequired,
+  tableCells: PropTypes.array.isRequired,
 }
 
 export default BasicTable;

@@ -23,8 +23,8 @@ class Table extends Component {
 Table.propTypes = {
   header: PropTypes.string.isRequired,
   subHeader: PropTypes.string.isRequired,
-  tableHeaders: PropTypes.string.isRequired,
-  tableCells: PropTypes.string.isRequired,
+  tableHeaders: PropTypes.array.isRequired,
+  tableCells: PropTypes.object.isRequired,
 }
 
 export default Table;

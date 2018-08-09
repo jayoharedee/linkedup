@@ -42,8 +42,8 @@ class Education extends Component {
         <Table 
           header="Education Credentials" 
           subHeader="Your education portfolio"
-          tableHeaders={['School', 'Degree', 'Years']}
-          tableCells={education}
+          tableHeaders={['School', 'Degree', 'Years', 'Delete']}
+          tableCells={this.props.education}
         />
       </div>
     )
