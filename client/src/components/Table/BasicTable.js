@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Table, Header } from 'semantic-ui-react';
 
-export default ({
+const BasicTable = ({
   header,
-  subheader,
+  subHeader,
   tableHeaders,
   tableCells,
 }) => {
@@ -12,14 +13,14 @@ export default ({
       <Header as='h4' image>
         <Header.Content>
           {header}
-        <Header.Subheader>{subheader}</Header.Subheader>
+        <Header.Subheader>{subHeader}</Header.Subheader>
         </Header.Content>
       </Header>
       <Table celled padded>
         <Table.Header>
           <Table.Row>
             {
-              tableHeaders.map((cell) => <Table.HeaderCell singleLine>{cell}</Table.HeaderCell>)
+              tableHeaders.map((cell) => <Table.HeaderCell>{cell}</Table.HeaderCell>)
             }
           </Table.Row>
         </Table.Header>
@@ -34,3 +35,12 @@ export default ({
     </div>
   );
 }
+
+BasicTable.propTypes = {
+  header: PropTypes.string.isRequired,
+  subHeader: PropTypes.string.isRequired,
+  tableHeaders: PropTypes.string.isRequired,
+  tableCells: PropTypes.string.isRequired,
+}
+
+export default BasicTable;
