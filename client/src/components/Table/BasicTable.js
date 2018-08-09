@@ -8,6 +8,7 @@ const BasicTable = ({
   tableHeaders,
   tableCells,
 }) => {
+  const tr = [];
   return (
     <div>
       <Header as='h4' image>
@@ -20,14 +21,30 @@ const BasicTable = ({
         <Table.Header>
           <Table.Row>
             {
-              tableHeaders.map((cell) => <Table.HeaderCell singleLine>{cell}</Table.HeaderCell>)
+              tableHeaders.map((cell) => {
+                tr.push(cell)
+                return <Table.HeaderCell singleLine>{cell}</Table.HeaderCell>
+              })
             }
           </Table.Row>
         </Table.Header>
         <Table.Body>
           <Table.Row>
             {
-              tableCells.map((cell) => <Table.Cell singleLine>{cell}</Table.Cell>)
+              tr.map((row) => tableCells.map((field, index) => {
+                let cell;
+                const tr = row.toLowerCase();
+                // console.log(tr, field, field[tr]);
+                console.log(tr, field);
+                if (field.hasOwnProperty(tr)) {
+                  // change the logic in the calling component so the object passed as prop here is serialized
+                  console.log(tr);
+                  cell = <Table.Cell singleLine>{field[tr]}</Table.Cell>;
+                }
+
+                return cell;
+              }))
+
             }
           </Table.Row>
         </Table.Body>
