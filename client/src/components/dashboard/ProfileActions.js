@@ -4,12 +4,12 @@ import { Button, Grid } from 'semantic-ui-react'
 
 const ProfileActions = () => {
   return (
-    <Grid.Row centered column={3}>
+    <Grid.Row stackable relaxed stretched>
       <Button.Group inverted>
         <Grid.Column>
           <Button as={Link} to="/edit-profile"  color='blue' basic content='Blue'>
             Edit Profile
-          </Button> 
+          </Button>
         </Grid.Column>
 
         <Grid.Column>
