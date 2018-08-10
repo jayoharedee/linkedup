@@ -13,10 +13,6 @@ import PropTypes from 'prop-types';
 
 import Field from '../common/FormField';
 import SelectField from '../common/SelectField';
-import TextFieldGroup from '../common/TextFieldGroup';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import InputGroup from '../common/InputGroup';
-import SelectListGroup from '../common/SelectListGroup';
 
 import { createProfile } from '../../actions/profileActions';
 
@@ -249,9 +245,9 @@ class CreateProfile extends Component {
           />
           {socialInputs}
           <Divider />
-          <Button positive
+          <Button
             onClick={this.onSubmit}
-            floated='right'
+            color='black'
           >
             Submit
           </Button>
