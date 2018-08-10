@@ -78,6 +78,13 @@ class AddEducation extends Component {
     return (
       <div className="add-education">
         <Container>
+          <Button 
+            as={Link} 
+            color='black'
+            to="/dashboard"
+          >
+            Go Back
+          </Button>
           <Header size='huge' textAlign='center'>
             <Icon name='settings' />
             Add Education

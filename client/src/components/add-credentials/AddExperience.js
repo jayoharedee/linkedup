@@ -5,6 +5,18 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addExperience } from '../../actions/profileActions';
+import {
+  Form,
+  Container,
+  Divider,
+  Button,
+  Icon,
+  Header,
+  TextArea,
+} from 'semantic-ui-react';
+
+
+import Field from '../common/FormField';
 
 class AddExperience extends Component {
   constructor(props) {
@@ -64,16 +76,24 @@ class AddExperience extends Component {
 
     return (
       <div className="add-experience">
+        <Container>
+          <Button content='Go Back' color='black' />
+          <Header size='huge' textAlign='center'>
+            <Icon name='settings' />
+            Add Experience
+            <Header.Subheader>Add any job or position that you have had in the past or current</Header.Subheader>
+          </Header>
+        </Container>
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <Link to="/dashboard" className="btn btn-light">
                 Go Back
               </Link>
-              <h1 className="display-4 text-center">Add Experience</h1>
+              {/* <h1 className="display-4 text-center">Add Experience</h1>
               <p className="lead text-center">
                 Add any job or position that you have had in the past or current
-              </p>
+              </p> */}
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
