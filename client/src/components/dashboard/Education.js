@@ -16,34 +16,24 @@ class Education extends Component {
   render() {
     let education;
     if (this.props.education) {
-      education = this.props.education.map((edu) => (
-        <tr key={edu._id}>
-          <td>{edu.school}</td>
-          <td>{edu.degree}</td>
-          <td>
-            <Moment format="YYYY/MM/DD">{edu.from}</Moment> -{' '}
-            {
-              edu.to === null ? (
-                ' Now'
-              ) : (
-                <Moment format="YYYY/MM/DD">{edu.to}</Moment>
-              )
-            }
-          </td>
-          <td>
-            <button className="btn btn-danger" onClick={this.onDeleteClick.bind(this, edu._id)}>Delete</button>
-          </td>
-        </tr>
-      ));
+      education = this.props.education.map((edu) => ({
+        key: edu._id,
+        school: edu.school,
+        degree: edu.degree,
+        from: <Moment format="YYYY/MM/DD">{edu.from}</Moment>,
+        to: (edu.to !== null ? <Moment format="YYYY/MM/DD">{edu.to}</Moment> : 'Now'),
+        years: `${this.from} - ${this.to}`,
+        delete: <button className="btn btn-danger" onClick={this.onDeleteClick.bind(this, edu._id)}>Delete</button>,
+      }));
     }
 
     return (
       <div>
-        <Table 
-          header="Education Credentials" 
+        <Table
+          header="Education Credentials"
           subHeader="Your education portfolio"
           tableHeaders={['School', 'Degree', 'Years', 'Delete']}
-          tableCells={this.props.education}
+          tableCells={education}
         />
       </div>
     )
