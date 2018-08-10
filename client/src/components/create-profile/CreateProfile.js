@@ -5,13 +5,8 @@ import {
   // Checkbox,
   Form,
   Container,
-  Header,
-  Dropdown,
   Divider,
   Button,
-  Segment,
-  Icon,
-  Select,
   // Image,
  } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
