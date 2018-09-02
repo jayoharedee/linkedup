@@ -77,7 +77,12 @@ class AddExperience extends Component {
     return (
       <div className="add-experience">
         <Container>
-          <Button content='Go Back' color='black' />
+          <Button
+            to="/dashboard"
+            as={Link}
+            content='Go Back'
+            color='black'
+          />
           <Header size='huge' textAlign='center'>
             <Icon name='settings' />
             Add Experience

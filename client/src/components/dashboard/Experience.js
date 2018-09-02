@@ -27,8 +27,8 @@ class Experience extends Component {
     return (
       <div>
         <Table
-          header="Education Credentials"
-          subHeader="Your education portfolio"
+          header="Add Experience"
+          subHeader="Add any job or position that you have had in the past or current"
           tableHeaders={['Company', 'Title', 'Years', 'Delete']}
           tableCells={experience}
         />
